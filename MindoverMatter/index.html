@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mind Over Matter</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #fbc2eb, #a6c1ee);
+  text-align: center;
+  color: #333;
+}
+
+.container {
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+h1 {
+  margin-top: 0;
+}
+
+button {
+  padding: 10px 15px;
+  margin: 5px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 16px;
+  background-color: #ff4da6;
+  color: white;
+  transition: 0.3s;
+}
+
+button:hover {
+  background-color: #e60073;
+}
+
+textarea {
+  width: 90%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  resize: none;
+}
+
+.breath {
+  width: 100px;
+  height: 100px;
+  background: #ff99cc;
+  border-radius: 50%;
+  margin: 20px auto;
+  animation: breathe 4s infinite;
+}
+
+@keyframes breathe {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.4); }
+  100% { transform: scale(1); }
+}
+
+.footer {
+  font-size: 14px;
+  margin-top: 20px;
+  color: white;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="card">
+    <h1>🧠 Mind Over Matter</h1>
+    <h3>Mental Health Awareness</h3>
+    <p>Taking care of your mind should feel simple and safe 💛</p>
+  </div>
+
+  <div class="card">
+    <h2>😊 How are you feeling today?</h2>
+    <button onclick="setMood('Happy 😊')">😊</button>
+    <button onclick="setMood('Okay 🙂')">🙂</button>
+    <button onclick="setMood('Sad 😔')">😔</button>
+    <button onclick="setMood('Stressed 😣')">😣</button>
+    <p id="moodResult"></p>
+  </div>
+
+  <div class="card">
+    <h2>📝 Digital Journal</h2>
+    <textarea id="journal" rows="4" placeholder="Write your thoughts here..."></textarea><br><br>
+    <button onclick="saveJournal()">Save Entry</button>
+    <p id="saveMessage"></p>
+  </div>
+
+  <div class="card">
+    <h2>🌬 Take a Breathing Break</h2>
+    <div class="breath"></div>
+    <p>Breathe in... Breathe out...</p>
+  </div>
+
+  <div class="card">
+    <h2>🚨 Need Help?</h2>
+    <p>Kiran Mental Health Helpline (India): <b>1800-599-0019</b></p>
+    <p>Emergency: <b>112</b></p>
+  </div>
+
+  <div class="footer">
+    Made with 💗 for Mental Health Awareness
+  </div>
+
+</div>
+
+<script>
+function setMood(mood) {
+  document.getElementById("moodResult").innerHTML =
+  "You are feeling " + mood + ". Remember, it's okay 💛";
+}
+
+function saveJournal() {
+  let text = document.getElementById("journal").value;
+  if(text === "") {
+    document.getElementById("saveMessage").innerHTML = "Please write something first.";
+    return;
+  }
+  localStorage.setItem("mentalJournal", text);
+  document.getElementById("saveMessage").innerHTML = "Journal saved successfully 💾";
+}
+
+window.onload = function() {
+  let saved = localStorage.getItem("mentalJournal");
+  if(saved) {
+    document.getElementById("journal").value = saved;
+  }
+};
+</script>
+
+</body>
+</html>
